@@ -1,0 +1,3 @@
+Путь к ключу ssh
+C:\Users\пк\.ssh\id_rsa2
+password: yt889jj
