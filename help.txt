@@ -1,3 +1,6 @@
 Путь к ключу ssh
 C:\Users\пк\.ssh\id_rsa2
 password: yt889jj
+
+помощь по магазину
+https://russianblogs.com/article/6525692725/

@@ -1,0 +1,92 @@
+{# html импорты bootstrap, js, jquery и тд. для всего проекта #}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/media.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css" integrity="sha512-OTcub78R3msOCtY3Tc6FzeDJ8N9qvQn1Ph49ou13xgA9VsH9+LRxoFU6EqLhW4+PKRfU+/HReXmSZXHEkpYoOA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+</head>
+
+<body>
+    {% block content %}
+        {% block navigation %}
+        {% endblock %}
+    {% endblock %}
+    <script>
+        // Mobile nav button
+        const navBtn = document.querySelector('.mobile-nav-btn');
+        const nav = document.querySelector('.mobile-nav');
+        const menuIcon = document.querySelector('.nav-icon');
+        const fade = document.querySelector('.mobile-nav-fade');
+
+        navBtn.onclick = function() {
+            nav.classList.toggle('mobile-nav--open');
+            fade.classList.toggle('mobile-nav-fade--open');
+            menuIcon.classList.toggle('nav-icon--active');
+            document.body.classList.toggle('no-scroll');
+        };
+
+        fade.onclick = function() {
+            nav.classList.toggle('mobile-nav--open');
+            fade.classList.toggle('mobile-nav-fade--open');
+            menuIcon.classList.toggle('nav-icon--active');
+            document.body.classList.toggle('no-scroll');
+        };
+
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.owl-carousel').owlCarousel({
+                /*бесконечная карусель*/
+                responsive: {
+                    // breakpoint from 0 up
+                    0: {
+                        items: 2,
+                        margin: 32,
+                        loop: true,
+                        dots: false,
+                        //stagePadding: 90,
+                    },
+                    // breakpoint from 480 up
+                    601: {
+                        items: 3,
+                        margin: 32,
+                        loop: true,
+                        dots: false,
+                    },
+                    // breakpoint from 768 up
+                    1001: {
+                        items: 3,
+                        margin: 48,
+                        loop: true,
+                        dots: false,
+                    }
+                }
+            });
+        });
+
+    </script>
+    <script>
+        $(document).ready(function() {
+            $(".gallery a").fancybox();
+
+        });
+
+    </script>
+</body>
+
+</html>

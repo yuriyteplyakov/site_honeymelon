@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'django.contrib.sites',
+    'debug_toolbar',
+    # 'channels',
     'django.contrib.humanize',
 
     # стандартные пакеты
@@ -93,7 +95,8 @@ ROOT_URLCONF = "site_honey.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, 'templates'),
+                 ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -143,7 +146,7 @@ WSGI_APPLICATION = "site_honey.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db_honey_site_1.sqlite3",
+        "NAME": BASE_DIR / "db_honey_site_2.sqlite3",
     }
 }
 
@@ -186,10 +189,11 @@ STATIC_URL = "static/"
 
 # (https://docs.djangoproject.com/en/4.2/ref/settings/#static-root)
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
+"""
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "other_static"),
 ]
+"""
 
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
@@ -206,7 +210,12 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+#CRISPY_TEMPLATE_PACK = 'bootstrap5'
 CRISPY_TEMPLATE_PACK = 'uni_form'
+
+#https://docs.djangoproject.com/en/4.2/ref/settings/#login-url
+LOGIN_REDIRECT_URL = 'blog-home'#blog/views.py первая ссылка на index.html
+LOGIN_URL = 'account_login'
 
 CKEDITOR_CONFIGS = {
     'default': {

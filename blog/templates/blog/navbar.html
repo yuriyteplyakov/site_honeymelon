@@ -1,0 +1,47 @@
+{% load static %}
+
+
+    <div class="container container--header">
+        <nav class="nav">
+            <a href="/" class="logo">Honeymelon handmade jewerly</a>
+            <ul class="nav-list">
+                <li class="nav-list__item">
+                    <a href="{% url 'user-posts-list' user %}" class="nav-list__link">Мой блог</a>
+                </li>
+                <li class="nav-list__item">
+                    <a href="" class="nav-list__link">Каталог</a>
+                </li>
+                <li class="nav-list__item">
+                    <a href="" class="nav-list__link">Отзывы</a>
+                </li>
+                <li class="nav-list__item">
+                    <a href="./cart.html" class="nav-list__link">Корзина</a>
+                </li>
+                <li class="nav-list__item">
+                    <a href="" class="nav-list__link">Покупателям</a>
+                </li>
+                <li class="nav-list__item">
+                    <a href="" class="nav-list__link">Обратная связь</a>
+                </li>
+            </ul>
+            <button class="mobile-nav-btn">
+                <div class="nav-icon"></div>
+            </button>
+        </nav>
+
+        <!--мобильная навигация-->
+<div class="mobile-nav-fade"></div>
+<div class="mobile-nav">
+    <ul class="mobile-nav__list">
+        <li><a href="/" class="active">Главная</a></li>
+        <li><a href="#">Мой блог</a></li>
+        <li><a href="/catalog/">Наличие</a></li>
+        <li><a href="#">Отзывы</a></li>
+        <li><a href="#">Корзина</a></li>
+        <li><a href="#">Покупателям</a></li>
+        <li><a href="#">Обратная связь</a></li>
+        
+    </ul>
+</div>
+<!--мобильная навигация-->
+    </div>

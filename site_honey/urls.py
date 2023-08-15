@@ -22,6 +22,10 @@ from django.conf.urls import include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path('accounts/', include('allauth.urls')),
+
+    # здесь делаем только перенаправление на файл url.py приложения
+    path('', include("blog.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
