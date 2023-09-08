@@ -87,6 +87,23 @@
         });
 
     </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var favoritesLink = document.querySelector('a[href="#favorites"]');
+        var favoritesModal = document.getElementById('favorites');
+        favoritesLink.addEventListener('click',
+        function(event) {
+            event.preventDefault();
+        favoritesModal.style.display='block';
+        var closeButton = favoritesModal.querySelector('.close');
+    closeButton.addEventListener('click',
+    function() {
+        favoritesModal.style.display='none';
+    });
+    });
+    });
+</script>
 </body>
 
 </html>

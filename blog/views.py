@@ -1,12 +1,18 @@
-from typing import Optional
+from typing import Any, Dict, Optional
+from django.forms.models import BaseModelForm
+from django.http import HttpResponse
 from django.urls.base import reverse_lazy
 #from django.urls.base import reverse_lazy
 from django.shortcuts import get_object_or_404, render
-from django.views.generic import ListView, CreateView, DetailView, DeleteView
+from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
 from blog.models import Post
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.decorators import login_required
+import random
 
+# first
+#COMPLETED: [x] Завершена
 def index(request):
     context = {
         'posts': Post.objects.all()
@@ -59,9 +65,66 @@ todo - Выборка объектов QuerySet (api моделей)
 5. Декораторы
 """
 
+""" Posts of following user profiles """
+# TODO: делать
+@login_required
+def posts_of_following_profiles(request):
+    pass
+
+
+""" Post Like """
+# TODO: делать
+@login_required
+def LikeView(request):
+    pass
+
+
+""" Post save """
+# TODO: делать SaveView сохранение постов
+@login_required
+def SaveView(request):
+    pass
+
+
+""" Like post comments """
+# TODO: делать
+@login_required
+def LikeCommentView(request): # , id1, id2              id1=post.pk id2=reply.pk
+    pass
+
+
+""" Home page with all posts """
+# WORK: делаю
+# FIXME BUG html
+class HomePostListViewAllUsers(ListView):
+    model = Post
+    template_name = "blog/home.html"
+    context_object_name = "posts"
+    ordering = ["-date_created"]
+    paginate_by = 3
+    # https://docs.djangoproject.com/en/4.1/ref/class-based-views/
+    def get_context_data(self, *args, **kwargs):
+        context = super(HomePostListViewAllUsers, self).get_context_data()# разобрать метод super
+        users = list(User.objects.exclude(pk=self.request.user.pk))# исключаем с помощью exclude (записи будут выводиться без учета редактирования)
+        if len(users) > 3:
+            out = 3
+        else:
+            out = len(users)
+        random_user = random.sample(users, out)
+        context["random_users"] = random_user
+        return context
+
+
+""" All the posts of the user """
+
+# BUG: исправить нет пагинации paginate_by = 5, 
+# https://docs.djangoproject.com/en/4.1/ref/class-based-views/mixins-multiple-object/#django.views.generic.list.MultipleObjectMixin.paginate_by
+
 class UserPostListView(ListView):
     # Модель Post в models.py
+    paginate_by = 2
     model = Post
+    context_object_name = 'blog_post_user_list'
 
     # Имя шаблона html
     template_name = 'blog/user_posts.html'
@@ -80,18 +143,20 @@ class UserPostListView(ListView):
         return Post.objects.filter(author=user).order_by('date_created')
     
 """
-    def get_context_data(self, **kwargs):
-        user = get_object_or_404(User, username=self.kwargs.get('username'))
-        queryset = Post.objects.filter(author=user)
-        context = super().get_context_data(**kwargs)
-        context['blog_post_user_list'] = queryset.order_by('-date_created')
+    
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username')) # (HTTP методы GET и POST)
+        return Post.objects.filter(author=user).order_by('-date_created')
         # {'blog_post_user_list': queryset.order_by('-date_created')} для записи выше как словарь
-        return context
+        #return context
     
 
         #queryset = Post.objects.filter(title__startswith). # с учетом регистра
         #queryset.order_by("-date_created")
 
+
+""" Create post """
+# COMPLETED: [x] - завершено
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     fields = ['title', 'content']
@@ -100,12 +165,47 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
     
+""" About page """
+# TODO: делать
+def about(request):
+    pass 
+
+""" Search by post title or username """
+# TODO: делать
+def search(request):
+    pass 
+
+
+""" Liked posts """
+# TODO: делать
+@login_required
+def AllLikeView(request):
+    pass
+    
+# BUG сначала написать лайки и сохранение
+""" Post detail view 
+# WORK: сейчас делаю.
 class PostDetailView(DetailView):
     model = Post
     template_name = 'blog/post_detail.html'
     context_object_name = 'blog_post_detail'
+"""
 
-
+def post_detail_view(request, pk):
+    # source stuff
+    handle_page = get_object_or_404(Post, id=pk)
+    # example blog_views_PostDetailView.ipynb
+    total_comments = handle_page.comments_blog.all().filter(reply_comment=None).order_by('-id')
+    total_comments2 = handle_page.comments_blog.all().order_by('-id')
+    total_likes = handle_page.total_likes_post()
+    total_saves = handle_page.total_saves_posts()
+    # RELATED APP notification
+    context = {}
+    
+    context["post"] = handle_page
+    return render(request, 'blog/post_detail.html', context)
+# часть 6
+# 6. Сделаем заголовки статей ссылками.
 """
 # На сегодня этот код кривой в моём понимании, но суть в другом, можно писать что угодно. Код работает, но сегодня я бы просто использовал
 LoginRequiredMixin, а прямо в классе CourseCreateView прописал бы проверку на группу и пере направление, иными словами UserSettingsViewMixin можно было вообще убрать.
@@ -125,10 +225,14 @@ class UserSettingsViewMixin(UserPassesTestMixin, View):
             # пере направление
             return '/students/NoAccess/'
 """
+
+""" Delete post """
+# import LoginRequiredMixin, UserPassesTestMixin,
+# COMPLETED: [x] - завершено
 #https://docs.djangoproject.com/en/4.2/topics/auth/default/#django.contrib.auth.mixins.UserPassesTestMixin
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
-    success_url = reverse_lazy('/')
+    success_url = ('/')
     template_name = 'blog/delete_post.html'
 
     def test_func(self):
@@ -154,3 +258,29 @@ class CourseCreateView(UserSettingsViewMixin, PermissionRequiredMixin, OwnerCour
                     name='old_school_before_2020').count() == 0  # d скобках указывается группа, для проверки входит ли в неё пользователь
         return False
 """
+
+""" Главная страница со всеми сообщениями
+в проекте first у нас index
+"""
+
+""" Update post """
+# COMPLETED: [x] - завершено
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Post
+    fields = ['title', 'content']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+    
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
+    
+""" Saved posts """
+# TODO: делать
+@login_required
+def AllSaveView(request):
+    pass

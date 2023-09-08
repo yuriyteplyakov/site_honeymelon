@@ -72,6 +72,8 @@ INSTALLED_APPS = [
 
     'catalog.apps.CatalogConfig',
     'blog.apps.BlogConfig',
+    'users.apps.UsersConfig',
+    'notification',
 
     # должна быть последней
     'django_cleanup.apps.CleanupConfig',

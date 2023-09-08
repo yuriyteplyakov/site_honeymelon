@@ -29,7 +29,7 @@ class Post(models.Model):
     # content = models.TextField(max_length=5000, blank=True, null=True, help_text="не более 5000 символов")
     content = RichTextField(max_length=5000, blank=True, null=True, help_text="не более 5000 символов")
     date_created = models.DateTimeField(default=timezone.now)
-    image = models.ImageField(upload_to='blog_cards/%Y/%m/%d', blank=True)
+    image = models.ImageField(upload_to='blog_cards/%Y/%m/%d', blank=True, null=True)
     date_updated = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE) # null=True если анонимный пользователь create article
     # в url при использовании slug обязательно добавлять id + get_absolute_url()
@@ -47,7 +47,7 @@ class Post(models.Model):
 
 
     def total_likes_post(self):
-        return self.likes.count()
+        return self.likes_post.count()
     
     def total_saves_posts(self):
         return self.saves_posts.count()

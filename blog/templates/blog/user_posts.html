@@ -1,0 +1,79 @@
+{% extends 'blog/base.html' %}
+{% block title %}
+{% if post %}
+{{post.title}}
+{% else %}
+Все посты пользователя {{post.author}}
+{% endif %}
+{% endblock %}
+
+{% block content_blog %}
+<header class="header_nav">
+    <!--контент шапки для индексной страницы-->
+    {% block navigation %}
+{% include 'blog/navbar.html' %}
+{% endblock %}
+</header>
+<main class="main">
+<div class="container">
+    <section class="section">
+    <header class="section__header">
+        <h2 class="title-1">Мой блог</h2>
+    </header>
+
+
+        <div class="section__cards section__cards--2-in-row">
+            {% if blog_post_user_list %}
+            {% for post in blog_post_user_list%} {#Из файла views.py (context_object_name)#}
+            <article class="card card--wide">
+              <a href="{% url 'post-detail' post.id %}" class="card__link"></a>
+              <img class="card__img card__img--no-margin card__img--h100" src="{{ post.image.url }}" alt="Img">
+                <div class="card__desc">
+                  <h3 class="card__title card__title--big">E{{post.title}}</h3>
+                  
+                    <p class="card__text">{{post.content|safe|linebreaks|truncatewords_html:7}}[читать полностью]</p>
+                    <footer class="card__footer card__footer--wide">
+                        <a href="#date" class="card__footer-link card__footer-link--date">{{post.date_created|date:"d.m.Y"}}</a>
+                        <a href="#author" class="card__footer-link card__footer-link--author">{{post.author}}</a>
+                        
+                    </footer>
+                </div>
+
+            </article>
+            {% endfor %}
+
+{% else %}
+<header class="section__header"><h2 class="title-1">Пока нет записей</h2></header>
+
+{% endif %}
+
+
+{% if is_paginated %}
+
+        {% if page_obj.has_previous %}
+          <a class="btn btn-outline-info mb-4" href="?page=1">Первая</a>
+          <a class="btn btn-outline-info mb-4" href="?page={{page_obj.previous_page_number}}">Предыдущая</a>
+        {% endif %}
+  
+        {% for num in page_obj.paginator.page_range %}
+          {% if page_obj.number == num %}
+            <a class="btn btn-info mb-4" href="?page={{num}}">{{num}}</a>
+          {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+          <a class="btn btn-outline-info mb-4" href="?page={{num}}">{{num}}</a>
+          {% endif %}
+        {% endfor %}
+  
+        {% if page_obj.has_next %}
+          <a class="btn btn-outline-info mb-4" href="?page={{page_obj.next_page_number}}">Следующая</a>
+          <a class="btn btn-outline-info mb-4" href="?page={{page_obj.paginator.num_pages}}">Последняя</a>
+        {% endif %}
+  
+      {% endif %}
+{% endblock %}
+        </div>
+    
+</section>
+
+
+</div>
+</main>

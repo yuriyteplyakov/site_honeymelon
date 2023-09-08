@@ -1,0 +1,39 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block title %}
+{% if post %}
+{{post.title}}
+{% else %}
+Все посты {{post.author}}
+{% endif %}
+{% endblock %}
+{# FIXME дописать фото и ссылку на профиль, после создания app users #}
+{# FIXME Дом. зад. Если пользователь удалит фото по умолчанию и вообще не будет фото, вствить по умолчанию#}
+{% block content_blog %}
+<div class="container">
+<div class="post">
+    <h2 class="post-title">{{post.title}}</h2>
+    <p class="post-meta">
+        <span class="post-author">{{post.author}}</span> | <span class="post-date">{{post.date_created|date:"F d, Y"}}</span>
+    </p>
+    <div class="post-content">
+        <p>{{post.content|safe}}</p>
+    </div>
+    <div class="post-interaction">
+        <button class="like-button">Лайк</button>
+    </div>
+    <div class="post-comments">
+        <h3>Комментарии</h3>
+        <div class="comment">
+            <p>Текст комментария...</p>
+        </div>
+    </div>
+    {% if post.author == user %}
+    <a class="btn" href="{% url 'post-delete' post.id %}">Удалить пост |</a>
+    <a class="btn" href="{% url 'post-update' post.id %}">Редактировать</a>
+    {% endif %}
+
+    <p>{% include 'blog/comments.html' %}</p>
+</div>
+</div>
+{% endblock %}
