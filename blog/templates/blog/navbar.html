@@ -6,42 +6,56 @@
             <a href="/" class="logo">Honeymelon handmade jewerly</a>
             <ul class="nav-list">
                 <li class="nav-list__item">
-                    <a href="{% url 'user-posts-list' user %}" class="nav-list__link">Мой блог</a>
+                    <a href="/" class="nav-list__link nav-list__link--active">Главная</a>
                 </li>
                 <li class="nav-list__item">
-                    <a href="" class="nav-list__link">Каталог</a>
+                    <a href="/catalog/" class="nav-list__link">Каталог</a>
                 </li>
                 <li class="nav-list__item">
-                    <a href="" class="nav-list__link">Отзывы</a>
+                    <a href="{% url 'user-posts-list' user %}" class="nav-list__link">Блог</a>
                 </li>
                 <li class="nav-list__item">
-                    <a href="./cart.html" class="nav-list__link">Корзина</a>
+                    <a href="#favorites" class="nav-list__link">Избранное</a>
                 </li>
                 <li class="nav-list__item">
                     <a href="" class="nav-list__link">Покупателям</a>
                 </li>
                 <li class="nav-list__item">
-                    <a href="" class="nav-list__link">Обратная связь</a>
+                    <a href="./auth.html" class="nav-list__link">Вход</a> <!--в избранном в тг анимация модального окна для регистрации-->
                 </li>
             </ul>
             <button class="mobile-nav-btn">
                 <div class="nav-icon"></div>
             </button>
         </nav>
+    
 
-        <!--мобильная навигация-->
+
 <div class="mobile-nav-fade"></div>
-<div class="mobile-nav">
-    <ul class="mobile-nav__list">
-        <li><a href="/" class="active">Главная</a></li>
-        <li><a href="/home/">Все посты</a></li>
-        <li><a href="/catalog/">Наличие</a></li>
-        <li><a href="#">Отзывы</a></li>
-        <li><a href="#">Корзина</a></li>
-        <li><a href="#">Покупателям</a></li>
-        <li><a href="#">Обратная связь</a></li>
-        
-    </ul>
-</div>
-<!--мобильная навигация-->
+    <div class="mobile-nav">
+        <ul class="mobile-nav__list">
+            <li><a href="#" class="active">Главная</a></li>
+            <li><a href="#">Каталог</a></li>
+            <li><a href="#">Блог</a></li>
+            <li><a href="#">Отзывы</a></li>
+            <li><a href="#">Избранное</a></li><!--Здесь нужно реализовать отдельную страничку с избранным под мобилку-->
+            <li><a href="#">Покупателям</a></li>
+            <li><a href="#">Контакты</a></li>
+            <li><a href="#">Войти</a></li>
+            
+        </ul>
+    </div>
+
+    <div id="favorites" class="modal">
+        <button class="close">Закрыть</button>
+        <div class="modal-content">
+            
+            <div class="product-favorites">
+                <img src="./img/earrings.JPG" alt="Товар 1">
+                <h3>Товар 1</h3>
+                <p class="price-favorites">100 руб</p>
+                <button>Добавить в корзину</button>
+                
+            </div>
+        </div>
     </div>

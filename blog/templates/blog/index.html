@@ -2,106 +2,94 @@
 {% load static %}
 
 {% block title %}Блог{% endblock %}
-{% block index_only %}
-    
 
-<section class="only-index">
-    <header class="header_nav">
-        <!--контент шапки для индексной страницы-->
-        {% block navigation %}
+{% block content %}
+
+
+<header class="header-index">
+{% block navigation %}
 {% include 'blog/navbar.html' %}
-{% endblock %}
-</header>
-        <header class="header">
-        <div class="container container--header">
 
-            <div class="header__content">
-                <h1 class="header__title">Украшения из ювелирной смолы</h1>
-                <div class="header__text">
-                    <p>С любовью к каждой детали</p>
-                </div>
-                <button class="button button--huge">
-                    <img src="{% static 'img\spring_atumn_garden.png' %}" alt="gift">
-
-                    <a class="button-color" href="/catalog/"><span>Смотреть наличие</span></a>
-                </button>
-
-                
+<div class="header__content">
+    <section class="section">
+        <div class="container">
+            <div class="about-us">
+                <div class="about-us__desc">
+                    <h3 class="about-us__title">Украшения из ювелирной смолы</h3>
+                    <p class="about-us__text">Привет, я Маша. Безумно рада приветствовать тебя в своем магазине. Здесь ты найдешь все то, что я так люблю делать своими руками.</p>
+                    <!--
+                    <div class="about-us__button">
+                        <a href="#!" class="button button-more">Посмотреть блог
+                        </a>
+                    </div>
+                    -->
                     {% if user.is_authenticated %}
-                    <button class="button button-color button--login" type="button"><i class="fa fa-star"></i>
-                        <a href="#">&nbsp;Лента</a>&nbsp;</button>
-                            
-                        <button class="button button-color button--login" type="button"><i class="fa fa-user"></i>
-                        <a href="#">{{user}}, Добро пожаловать!</a></button>
-                    
+                    <div class="about-us__button">
+                        <a href="#" class="button button-more">&nbsp;Лента</a>&nbsp;</div>
+                        <div class="about-us__button">
+                            <a href="#" class="button button-more">{{user}}, Добро пожаловать!</a>&nbsp;</div>
                     {% else %}
                     
-                    <button class="button button-color button--login" type="button"><i class="fa fa-star"></i>
-                        <a href="#">&nbsp;Регистрация</a>&nbsp;</button>
+                    <div class="about-us__button">
+                        <a href="#" class="button button-more">&nbsp;Регистрация</a>&nbsp;</div>
                                 
-                        <button class="button button-color button--login" type="button"><i class="fa fa-user"></i>
-                        <a href="{% url 'account_login' %}">Войти</a></button>
-                    {% endif %}
-                    
-            </div>
-
-            </div>
-        </header>
-        </section>
-        <main class="main">
-        <section class="section">
-            <div class="container">
-                <div class="about-us">
-                    <div class="about-us__desc">
-                        <h3 class="about-us__title">Немного обо мне</h3>
-                        <p class="about-us__text">блаблаблабла</p>
-                        <!--
                         <div class="about-us__button">
-                            <a href="#!" class="button button-more">Посмотреть блог
-                            </a>
-                        </div>
-                        -->
-                    </div>
-        
-                    <img src="{% static 'img\IMG_0122.JPG' %}" alt="about-us" class="about-us__img">
+                        <a href="{% url 'account_login' %}" class="button button-more">Войти</a></div>
+                    {% endif %}
                 </div>
-            </div>
-        </section>
-    </main>
 
-    <section class="case-studies">
-        <div class="container">
-            <div class="case-studies_title">
-                <h2 class="title">Примеры работ</h2>
-            </div>
-            <div class="case-studies_text text">
-                <p>Украшения, которых уже нет в наличии, но их можно будет повторить</p>
+                <img src="{% static 'img\IMG_0122.JPG' %}" alt="" class="about-us__img">
             </div>
         </div>
-
-        <div class="container-right">
-            <div class="slider">
-                <div class="owl-carousel owl-theme">
-                    <div class="slider_item slide">
-                        <h3 class="slide_title">Кулоны</h3>
-                        <a href="" class="catalog_pod_zakaz"><img class="slide_img" src="{% static 'img\slider\pendant.jpg' %}" alt="01"></a>
-                    </div>
-                    <div class="slider_item slide">
-                        <h3 class="slide_title">Серьги</h3>
-                        <img class="slide_img" src="{% static 'img\slider\earrings.JPG' %}" alt="02">
-                    </div>
-                    <div class="slider_item slide">
-                        <h3 class="slide_title">Кольца</h3>
-                        <img class="slide_img" src="{% static 'img\slider\rings.JPG' %}" alt="03">
-                    </div>
-                    <div class="slider_item slide">
-                        <h3 class="slide_title">Браслеты</h3>
-                        <img class="slide_img" src="{% static 'img\slider\wristband.JPG' %}" alt="04">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--END Секция с примерами работ-->
+    
     </section>
+</div>
+
+</header>
+
+
+<div class="container">
+<!--доработать цвет текста и отступы + адаптив скопировать-->
+<section class="case-studies">
+    <div class="container-right">
+        <div class="case-studies_title">
+            <h2 class="title">Примеры работ</h2>
+        </div>
+        <div class="case-studies_text text">
+            <p>Здесь, собраны украшения, которых уже нет в наличии, но их можно повторить под заказ</p>
+        </div>
+    
+
+    
+        <div class="slider">
+            <div class="owl-carousel owl-theme">
+                <div class="slider_item slide">
+                    <h3 class="slide_title">Кулоны</h3>
+                    <a href="./catalog_pod_zakaz.html" class="catalog_pod_zakaz"><img class="slide_img" src="{% static 'img\slider\pendant.jpg' %}" alt="01"></a>
+                </div>
+                <div class="slider_item slide">
+                    <h3 class="slide_title">Серьги</h3>
+                    <img class="slide_img" src="{% static 'img\slider\earrings.JPG' %}" alt="02">
+                </div>
+                <div class="slider_item slide">
+                    <h3 class="slide_title">Кольца</h3>
+                    <img class="slide_img" src="{% static 'img\slider\rings.JPG' %}" alt="03">
+                </div>
+                <div class="slider_item slide">
+                    <h3 class="slide_title">Браслеты</h3>
+                    <img class="slide_img" src="{% static 'img\slider\wristband.JPG' %}" alt="04">
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+    <!--END Секция с примерами работ-->
+
+</div>
+
+
+
+
+{% endblock %}
 
 {% endblock %}

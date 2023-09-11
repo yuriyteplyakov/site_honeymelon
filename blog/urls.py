@@ -3,6 +3,7 @@ from django.urls import path, re_path
 from blog.views import UserPostListView, PostCreateView, PostDeleteView, PostUpdateView, post_detail_view, HomePostListViewAllUsers
 from . import views
 
+
 urlpatterns = [
     path('home/', HomePostListViewAllUsers.as_view(), name='blog-home-2'),
     path('', views.index, name='blog-home'),#LOGIN_REDIRECT_URL = 'blog-home' в settings.py (возможно переделать индексную страницу) name='index-home'

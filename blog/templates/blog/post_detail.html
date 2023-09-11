@@ -10,9 +10,19 @@
 {# FIXME дописать фото и ссылку на профиль, после создания app users #}
 {# FIXME Дом. зад. Если пользователь удалит фото по умолчанию и вообще не будет фото, вствить по умолчанию#}
 {% block content_blog %}
+<header class="header_nav">
+    <!--контент шапки для индексной страницы-->
+    {% block navigation %}
+{% include 'blog/navbar.html' %}
+{% endblock %}
+</header>
 <div class="container">
+
+<!--
 <div class="post">
-    <h2 class="post-title">{{post.title}}</h2>
+    <div class="post-header">
+        <h2 class="post-title">{{post.title}}</h2>
+    </div>
     <p class="post-meta">
         <span class="post-author">{{post.author}}</span> | <span class="post-date">{{post.date_created|date:"F d, Y"}}</span>
     </p>
@@ -35,5 +45,50 @@
 
     <p>{% include 'blog/comments.html' %}</p>
 </div>
+-->
+
+
+<div class="post">
+    <div class="post-header">
+        <h2 class="post-title">{{post.title}}</h2>
+    </div>
+    <div class="about-us">
+        <div class="about-us__desc">
+            <p class="post-content">{{post.content|safe}}</p>
+        </div>
+            <img src="{{ post.image.url }}" alt="изображение поста" class="post-image">
+            <div class="post-like">
+                <i class="fas fa-heart"></i>
+                <span class="like-count">0</span>
+            </div>
+    </div>
+    
+    <div class="post-comments">
+        
+        <h3 class="comments-heading">Комментарии</h3>
+<!--доработать адаптивность под маленькие экраны-->
+<div class="about-us">
+<div class="about-us__desc">
+        <ul class="comments-list">
+            <li class="comment-item">
+                <div class="comment-details">
+                    <span class="comment-author">Автор комментария</span>
+                    <span class="comment-date">Дата комментария</span>
+                </div>
+                    <p class="comment-content">Текст комментария</p>
+                    <div class="post-like">
+                        <i class="fas fa-heart"></i>
+                        <span class="like-count">0</span>
+                    </div>
+            </li>
+        </ul>
+    </div>
+        <form action="" class="comment-form">
+            <textarea class="comment-input" placeholder="Напишите комментарий"></textarea>
+            <button type="submit" class="comment-button">Отправить</button>
+        </form>
+        </div>
+    </div>
+    </div>
 </div>
 {% endblock %}
