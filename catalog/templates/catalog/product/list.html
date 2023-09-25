@@ -1,0 +1,51 @@
+{% extends 'catalog/base.html' %}
+
+{% load static %}
+
+
+{% block content_catalog %}
+<header class="header-catalog">
+    {% block navigation %}
+    {% include 'catalog/navbar-catalog.html' %}
+    {% endblock %}
+    </header>
+<section class="section">
+    <div class="container-catalog">
+        <div class="sidebar">
+            <h3>Категории</h3>
+            <ul>
+                <li>
+                    <a href="{% url 'shop:product_list' %}">Все категории</a>
+                </li>
+                {% for c in categories %}
+                    <li>
+                        <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="catalog">
+            {% for product in products %}
+            <div class="product">
+               
+                    <img src="{{ product.image.url }}" alt="Product 1">
+                    
+                
+                <h4>{% if product %}{{ product.name }}{% endif %}</h4>
+            <footer class="card__footer">
+                <p>{{ product.price }} р.</p>
+                <div class="card__rating">
+                    <img src="{% static 'img/heart.png' %}" alt="heart">
+                </div>
+            </footer>
+
+            <a class="bottom_btn" href="{{ product.get_absolute_url }}">
+                <button class="detail_catalog">Подробнее</button>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+

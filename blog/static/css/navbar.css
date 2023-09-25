@@ -43,7 +43,11 @@
 }
 
 .nav-list__link--active {
-    opacity: 1;
+    text-shadow: 0 0 10px #1f2763, /*#293030 или #c7367a*/
+        0 0 20px #1f2763,
+        0 0 30px #1f2763;
+    color: rgb(255, 250, 240);
+    flex-shrink: 0;
 }
 
 /*favorites*/

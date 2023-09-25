@@ -5,6 +5,7 @@
 @import url('mobile-nav.css');
 @import url('navbar.css');
 @import url('index.css');
+@import url('catalog.css');
 
 html {
     scroll-behavior: smooth;
