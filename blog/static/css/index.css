@@ -35,6 +35,9 @@
     
 }
 
+
+
+
 .about-us__title {
     color: #1a84c2;
     font-size: 32px;
@@ -48,17 +51,22 @@
     border: none;
     border-radius: 10px;
     -moz-border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.674);
-    -webkit-border-radius: 10px;
+    
     box-shadow: 2px 2px 3px #1a84c2;
     -moz-box-shadow: 2px 2px 3px #1a84c2;
     -webkit-box-shadow: 2px 2px 3px #1a84c2;
-    text-align: justify;
-    word-spacing:-2px;
-    color: #1a84c2;
+    
+    
+    text-shadow: 0 0 10px #2d3a9e, /*#293030 или #c7367a*/
+        0 0 20px #2d3a9e,
+        0 0 30px #2d3a9e;
+    color: rgb(255, 250, 240);
     font-size: 24px;
 }
-
+.about-us__desc_detail {
+    word-wrap: break-word;
+    padding: 15px;
+}
 
 
 .about-us__img {

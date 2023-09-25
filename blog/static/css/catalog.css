@@ -116,9 +116,7 @@
     cursor: pointer;
 }
 
-.bottom_btn {
-    
-}
+
 
 .detail_catalog:hover {
     background-color: rgb(30, 177, 226);
@@ -140,6 +138,20 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
+}
+
+.micro_navbar {
+    margin-bottom: 10px;
+}
+
+.micro_navbar a {
+    margin-right: 30px;
+    color: rgba(26, 132, 194, 1);
+    font-size: 20px;
+}
+
+.img_detail {
+    border-radius: 24px;
 }
 
 @media (max-width: 1350px) {

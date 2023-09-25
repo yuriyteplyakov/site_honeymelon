@@ -114,3 +114,7 @@ body {
     display: grid;
     grid-gap: 120px;
 }
+
+.section_detail {
+    margin-top: 80px;
+}
