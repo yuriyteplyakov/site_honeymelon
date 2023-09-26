@@ -74,6 +74,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
     'notification',
+    'cart',
 
     # должна быть последней
     'django_cleanup.apps.CleanupConfig',
@@ -267,3 +268,11 @@ MESSAGE_TAGS = {
 
 #В ПРОИЗВОДСТВЕ УБРАТЬ!
 os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
+
+# настройки сеанса (сессии)
+"""
+Это наш ключ для сохранения корзины покупок в сеансе пользователя.
+Поскольку сеанс Django является предварительным посетителем, все сеансы используют один и тот же ключ сеанса корзины покупок.
+"""
+
+CART_SESSION_ID = 'cart'

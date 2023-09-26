@@ -26,12 +26,13 @@
             {% if blog_post_user_list %}
             {% for post in blog_post_user_list%} {#Из файла views.py (context_object_name)#}
             <article class="card card--wide">
-              <a href="{% url 'post-detail' post.id %}" class="card__link"></a>
+              
               <img class="card__img card__img--no-margin card__img--h100" src="{{ post.image.url }}" alt="Img">
                 <div class="card__desc">
                   <h3 class="card__title card__title--big">{{post.title}}</h3>
                   
-                    <p class="card__text">{{post.content|safe|linebreaks|truncatewords_html:7}} [читать полностью]</p>
+                    <p class="card__text">{{post.content|safe|linebreaks|truncatewords_html:7}} </p>
+                    <a href="{% url 'post-detail' post.id %}" class="card__link">[читать полностью]</a>
                     <footer class="card__footer card__footer--wide">
                         <a href="#date" class="card__footer-link card__footer-link--date">{{post.date_created|date:"d.m.Y"}}</a>
                         <a href="#author" class="card__footer-link card__footer-link--author">{{post.author}}</a>

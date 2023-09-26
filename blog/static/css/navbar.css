@@ -53,7 +53,7 @@
 /*favorites*/
 
 .modal {
-    display: none;
+    
     position: fixed;
     z-index: 1;
     left: 0;
@@ -61,16 +61,24 @@
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(182, 126, 177, 0.5);
 }
 
 .modal-content {
-    background-color: #ffffff;
+    
     width: 800px;
     height: auto;
     margin: 100px auto;
     padding: 20px;
+    border: none;
     border-radius: 10px;
+    -moz-border-radius: 10px;
+    
+    box-shadow: 2px 2px 3px #1a84c2;
+    -moz-box-shadow: 2px 2px 3px #1a84c2;
+    -webkit-box-shadow: 2px 2px 3px #1a84c2;
+    color: #1a84c2;
+    font-size: 24px;
+    
 }
 
 .product-favorites img {
@@ -108,12 +116,19 @@
 
 .close {
     color: #fff7f7;
-    background-color: #d137e6;/*#65d3d3*/
+    background: rgba(121, 189, 226, 0.8);
     padding: 10px;
-    position: fixed;
+    
     margin-top: 100px;
     margin-left: 5px;
     border-radius: 4px;
+}
+
+.close:hover {
+    background-color: #5f6fe9;
+
+    box-shadow: 0 0.4em 1.2em rgba(0, 0, 0, 0.3);
+    transform: scale(1.02);
 }
 
 

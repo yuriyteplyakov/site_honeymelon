@@ -18,12 +18,19 @@
             <img class="img_detail" src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'shop/img/no_image.png' %}{% endif %}">
             <div class="about-us__desc">
                 <h3 class="about-us__title">{{ product.name }}</h3>
+                <p>{{ product.price }} р.</p>
                 <div class="about-us__detail">
                 <p>{{ product.description| safe }}</p>
                 </div>
                 <footer class="card__footer">
-                    <p>{{ product.price }} р.</p>
-                    <a href=""><button class="detail_catalog">В корзину</button></a>
+                    
+                    <form id="cart-form" action="{% url 'cart:cart_add' product.id %}" method="post">
+                        <label for="quantity" class="quantity-label">Количество:</label>
+                        <input type="number" name="quantity" id="quantity" class="quantity-input" value="1" min="1">
+                        
+                        {% csrf_token %}
+                        <input type="submit" value="В корзину" class="submit-button" onclick="addToCart(event)">
+                    </form>
                     <div class="card__rating">
                         <img src="{% static 'img/heart.png' %}" alt="heart">
                     </div>

@@ -1,0 +1,87 @@
+{% extends "catalog/base.html" %}
+{% load static %}
+ 
+{% block title %}
+    Корзина товаров
+{% endblock %}
+ 
+{% block content %}
+    <h1>Твоя корзина</h1>
+
+    <div class="modal">
+        <a href="/catalog/catalog-list/">
+            <button class="close">Вернуться в каталог</button>
+        </a>
+        <div class="modal-content">
+            {% for item in cart %}
+            {% with product=item.product %}
+            <div class="product-favorites">
+                <a href="{{ product.get_absolute_url }}">
+                    <img src="
+                            {% if product.image %}{{ product.image.url }}{% endif %}">
+                </a>
+                <h3>{{ product.name }}</h3>
+                <p class="price-favorites">{{ item.price }} р.</p>
+                <a href="{% url 'cart:cart_remove' product.id %}">Удалить</a>
+                <td>
+                    <form action="{% url 'cart:cart_add' product.id %}"
+                          method="post">
+                        {{ item.update_quantity_form.quantity }}
+                        {{ item.update_quantity_form.update }}
+                        <input type="submit" value="изменить">
+                        {% csrf_token %}
+                    </form>
+                </td>
+            </div>
+            {% endwith %}
+        {% endfor %}
+
+        <td class="num">Итого: {{ cart.get_total_price }} р.</td>
+        </div>
+    </div>
+
+<!--Создать обработчик контента для текущей корзины покупок
+    <table class="cart">
+        <thead>
+        <tr>
+            <th>Фото</th>
+            <th>Название</th>
+            <th>Количество</th>
+            <th>Удаление</th>
+            <th>Цена за шт.</th>
+            <th>Общая стоимость</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in cart %}
+            {% with product=item.product %}
+                <tr>
+                    <td>
+                        <a href="{{ product.get_absolute_url }}">
+                            <img src="
+                                    {% if product.image %}{{ product.image.url }}{% endif %}">
+                        </a>
+                    </td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>
+                        <a href="{% url 'cart:cart_remove' product.id %}">Удалить</a>
+                    </td>
+                    <td class="num">${{ item.price }}</td>
+                    <td class="num">${{ item.total_price }}</td>
+                </tr>
+            {% endwith %}
+        {% endfor %}
+        <tr class="total">
+            <td>Total</td>
+            <td colspan="4"></td>
+            <td class="num">${{ cart.get_total_price }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <p class="text-right">
+        <a href="{% url 'shop:product_list' %}" class="button button-more">Вернуться</a>
+        <a href="#" class="button button-more">В начало</a>
+    </p>
+    -->
+{% endblock %} 
