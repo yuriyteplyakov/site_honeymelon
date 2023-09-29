@@ -15,33 +15,20 @@
             <h3>Категории</h3>
             <ul>
                 <li>
-                    <a href="{% url 'catalog:product_list' %}">Все категории</a>
+                    <a href="{% url 'catalog:product_list_order' %}">Все категории</a>
                 </li>
                 {% for c in categories %}
                     <li>
-                        <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                        <a href="{{ c.get_absolute_url_order }}">{{ c.name }}</a>
                     </li>
                 {% endfor %}
-            
-
-            <li class="last_child" >
-                {% with total_items=cart|length %}
-                    {% if cart|length > 0 %}
-                        
-                        <a href="{% url 'cart:cart_detail' %}">
-                            В корзине: {{ total_items }},</br>
-                            Сумма: {{ cart.get_total_price }}р.
-                        </a>
-                    </li>
-                    {% else %}
-                        <li>Корзина пуста :(</li>
-                    {% endif %}
-                {% endwith %}
+            <!--убрать сайдбар возможно (альтернатива)-->
                     
                 </ul>
         </div>
         <div class="catalog">
             {% for product in products %}
+            
             <div class="product">
                
                     <img src="{{ product.image.url }}" alt="Product 1">
@@ -54,16 +41,14 @@
                     <img src="{% static 'img/heart.png' %}" alt="heart">
                 </div>
             </footer>
-            <div class="detail_catalog_date">
+
             <a href="{{ product.get_absolute_url }}">
                 <button class="detail_catalog">Подробнее</button>
                 </a>
-                <p>{{ product.created|date:'d.m.y' }}г.</p>
             </div>
-            </div>
+            
             {% endfor %}
         </div>
     </div>
 </section>
 {% endblock %}
-

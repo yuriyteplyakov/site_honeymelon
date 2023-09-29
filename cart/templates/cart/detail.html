@@ -12,6 +12,9 @@
         <a href="/catalog/catalog-list/">
             <button class="close">Вернуться в каталог</button>
         </a>
+
+        <a href="{% url 'orders:order_create' %}" ><button class="close">Заказ</button></a>
+
         <div class="modal-content">
             {% for item in cart %}
             {% with product=item.product %}

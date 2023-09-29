@@ -22,7 +22,10 @@ class Category(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return reverse('shop:product_list_by_category', args=[self.slug])
+        return reverse('catalog:product_list_by_category', args=[self.slug])
+    
+    def get_absolute_url_order(self):
+        return reverse('catalog:product_list_by_category_order', args=[self.slug])
     
 class Product(models.Model):
     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
@@ -30,7 +33,7 @@ class Product(models.Model):
     slug = models.SlugField(max_length=150, db_index=True)
     image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True)
     description = RichTextField(max_length=1000, blank=True, null=True, help_text="не более 1000 символов")
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    price = models.DecimalField(max_digits=10, decimal_places=1)
     stock = models.PositiveIntegerField()
     available = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
@@ -51,4 +54,4 @@ class Product(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return reverse('shop:product_detail', args=[self.id, self.slug])
+        return reverse('catalog:product_detail', args=[self.id, self.slug])

@@ -27,6 +27,7 @@ urlpatterns = [
     # здесь делаем только перенаправление на файл url.py приложения
     path('', include("blog.urls")),
     path('cart/', include("cart.urls")),
+    path('orders/',include("orders.urls", namespace="orders")),
     path('catalog/', include("catalog.urls", namespace="shop")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

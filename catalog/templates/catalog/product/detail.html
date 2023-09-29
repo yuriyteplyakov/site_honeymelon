@@ -15,7 +15,7 @@
         </div>
         
         <div class="about-us">
-            <img class="img_detail" src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'shop/img/no_image.png' %}{% endif %}">
+            <img class="img_detail" src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'catalog/img/no_image.png' %}{% endif %}">
             <div class="about-us__desc">
                 <h3 class="about-us__title">{{ product.name }}</h3>
                 <p>{{ product.price }} р.</p>

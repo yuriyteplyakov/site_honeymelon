@@ -75,6 +75,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'notification',
     'cart',
+    'orders',
 
     # должна быть последней
     'django_cleanup.apps.CleanupConfig',
@@ -107,6 +108,8 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "cart.context_processors.cart",
+                # Если вам нужен доступ к базе данных, лучше создавать собственные теги шаблонов, а не использовать процессоры контента.
             ],
         },
     },
