@@ -1,6 +1,6 @@
 #-*- coding: utf-8 -*-
 from django.urls import path, re_path
-from blog.views import UserPostListView, PostCreateView, PostDeleteView, PostUpdateView, post_detail_view, HomePostListViewAllUsers
+from blog.views import UserPostListView, PostCreateView, PostDeleteView, PostUpdateView, post_detail_view, HomePostListViewAllUsers, gallery_view
 from . import views
 
 
@@ -14,6 +14,7 @@ urlpatterns = [
     #path('post/<int:pk>/detail/', PostDetailView.as_view(), name='post-detail'),# добавить slug после id <slug:slug>/
     path('post/<int:pk>/detail/', views.post_detail_view, name='post-detail'),
     path('post/<int:pk>/update/', PostUpdateView.as_view(), name='post-update'),
+    path('gallery/', gallery_view, name='gallery'),
 ]
 
 #16. Пропишем форму в сам шаблон удаления записи.

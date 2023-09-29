@@ -85,3 +85,11 @@ class Comment(models.Model):
     
     def get_absolute_url(self):
         return reverse('post-detail', kwargs={'pk': self.pk})
+    
+
+# модель отзывов из социальных сетей
+class Review(models.Model):
+    image = models.ImageField(upload_to='reviews')
+
+    def __str__(self):
+        return self.image.name

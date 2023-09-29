@@ -5,7 +5,7 @@ from django.urls.base import reverse_lazy
 #from django.urls.base import reverse_lazy
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
-from blog.models import Post
+from blog.models import Post, Review
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
@@ -284,3 +284,10 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 @login_required
 def AllSaveView(request):
     pass
+
+
+# представление для отзывов
+
+def gallery_view(request):
+    reviews = Review.objects.all()
+    return render(request, 'blog/reviews.html', {'reviews': reviews})

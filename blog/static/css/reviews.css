@@ -1,0 +1,28 @@
+/* Card */
+.card {
+    position: relative;
+
+}
+
+.gallery {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gallery img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.gallery img:hover {
+  transform: scale(1.1);
+}
+
+.section__cards--6-in-row {
+    grid-template-columns: repeat(6, 1fr);
+}
