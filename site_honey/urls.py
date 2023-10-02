@@ -28,7 +28,7 @@ urlpatterns = [
     path('', include("blog.urls")),
     path('cart/', include("cart.urls")),
     path('orders/',include("orders.urls", namespace="orders")),
-    path('catalog/', include("catalog.urls", namespace="shop")),
+    path('catalog/', include("catalog.urls", namespace="catalog")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 

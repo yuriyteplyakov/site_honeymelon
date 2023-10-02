@@ -4,10 +4,11 @@
 
 }
 
+
+
 .gallery {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  
 }
 
 .gallery img {
@@ -26,3 +27,8 @@
 .section__cards--6-in-row {
     grid-template-columns: repeat(6, 1fr);
 }
+
+.section {
+    margin-top: 50px;
+}
+

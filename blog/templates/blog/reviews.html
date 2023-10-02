@@ -4,7 +4,11 @@
 {% block title %}Отзывы{% endblock %}
 
 {% block content %}
-
+<header class="header-catalog">
+    {% block navigation %}
+    {% include 'catalog/navbar-catalog.html' %}
+    {% endblock %}
+    </header>
 
     <section class="section">
         <div class="container">
@@ -12,17 +16,19 @@
                 <h2 class="title-1">Отзывы из социальных сетей</h2>
             </div>
             <div class="gallery">
-                {% for review in reviews %}
+                
                 <div class="section__cards--6-in-row">
                     
                     <article class="card">
-                        <a href="./img/reviews/1.jpg" data-fancybox="gallery">
+                        {% for review in reviews %}
+                        <a href="{{ review.image.url }}" data-fancybox="gallery">
                             <img class="card__img" src="{{ review.image.url }}" alt="{{ review.image.name }}" />
                         </a>
+                        {% endfor %}
                     </article>
                     
                 </div>
-                {% endfor %}
+                
             </div>
         </div>
     </section>

@@ -29,7 +29,3 @@ def product_list_order(request, category_slug=None):
                   {'category': category, 'categories': categories,
                    'products': products})
 
-def product_detail_order(request, id, slug):
-    product = get_object_or_404(Product, id=id, slug=slug, available=False)
-    cart_product_form = CartAddProductForm()
-    return render(request, 'catalog/product/detail_order.html', {'product': product, 'cart_product_form': cart_product_form})

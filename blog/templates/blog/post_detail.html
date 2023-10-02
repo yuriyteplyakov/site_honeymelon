@@ -10,7 +10,7 @@
 {# FIXME дописать фото и ссылку на профиль, после создания app users #}
 {# FIXME Дом. зад. Если пользователь удалит фото по умолчанию и вообще не будет фото, вствить по умолчанию#}
 {% block content_blog %}
-<header class="header_nav">
+<header class="header-catalog">
     <!--контент шапки для индексной страницы-->
     {% block navigation %}
 {% include 'blog/navbar.html' %}
@@ -89,6 +89,11 @@
         </form>
         </div>
     </div>
+    
     </div>
+    <div class="post-comments">
+    {% include "blog/comments.html" %}
+</div>
+    
 </div>
 {% endblock %}

@@ -231,6 +231,153 @@
     font-size: 16px;
 }
 
+
+/* Footer */
+
+.footer {
+    padding: 120px 0;
+    background-color: #c4e4ef;
+}
+
+
+
+.footer__logo {
+    font-size: 15px;
+    font-weight: 400;
+    text-shadow: 0 0 10px #FFD1DC,
+        0 0 20px #FFD1DC,
+        0 0 30px #FFD1DC;
+    color: rgba(17, 68, 85, 1);
+    flex-shrink: 0;
+}
+
+.footer__row {
+    display: grid;
+    grid-gap: 64px;
+    grid-template-columns: repeat(3, auto);
+}
+
+.footer__copyright {
+    max-width: 354px;
+    display: grid;
+    grid-gap: 16px;
+}
+
+.footer__text {
+    margin-bottom: 16px;
+    font-size: 13px;
+    color: #5B5B5B;
+}
+
+.footer__socials {
+    display: flex;
+    grid-gap: 32px;
+    align-items: center;
+}
+
+
+
+/* Footer Nav */
+
+.footer__nav-wrapper {
+    display: flex;
+    column-gap: 64px;
+}
+
+.footer__nav {
+    display: grid;
+    grid-template: 20px;
+}
+
+.footer__nav-title {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.footer__nav-list {
+    display: grid;
+    grid-template: 12px;
+}
+
+.footer__nav-item {}
+
+.footer__nav-link {
+    color: rgba(17, 68, 85, 0.7);
+    font-size: 13px;
+}
+
+.footer__nav-link:hover {
+    color: rgba(17, 68, 85, 1);
+}
+
+
+/* Subscribe */
+
+.footer__subscribe {
+    max-width: 388px;
+}
+
+.footer__subscribe-title {
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* Sunscribe */
+
+.subscribe {
+    display: flex;
+    column-gap: 16px;
+}
+
+.subscribe__input-wrapper {
+    position: relative;
+    flex-grow: 9;
+}
+
+.subscribe__input {
+    padding: 32px 20px 16px 56px;
+
+    width: 100%;
+    height: 70px;
+    background-color: #fff;
+    border-radius: 12px;
+
+    background-image: url('./../img/icons/email.svg');
+    background-repeat: no-repeat;
+    background-position: 18px 24px;
+}
+
+.subscribe__label {
+    position: absolute;
+    top: 26px;
+    left: 56px;
+
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(17, 68, 85, 0.7);
+
+    transition: all 0.2s ease-in;
+    pointer-events: none;
+}
+
+.subscribe__input:focus ~ .subscribe__label,
+.subscribe__input:valid ~ .subscribe__label {
+    top: 16px;
+}
+
+.subscribe__label--top {
+    top: 16px;
+}
+
+/*
+.subscribe__input:invalid ~ .subscribe__label {
+    top: 16px;
+    color: #ff0000;
+} */
+
+
+
 @media (max-width: 1750px) {
     .container-right {
         padding-left: 15px;

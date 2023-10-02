@@ -7,6 +7,7 @@
 @import url('index.css');
 @import url('catalog.css');
 @import url('reviews.css');
+@import url('blog.css');
 
 html {
     scroll-behavior: smooth;

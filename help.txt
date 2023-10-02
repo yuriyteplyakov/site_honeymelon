@@ -6,6 +6,8 @@ password: yt889jj
 https://russianblogs.com/article/6525692725/
 
 
+https://codepen.io/RitikaAgrawal08/pen/XWqVYvb
+
 "BUG", - замечен баг, поработать
 "HACK", - очень крутой метод, когда можно использовать еще и где
 "FIXME", - срочно исправить
