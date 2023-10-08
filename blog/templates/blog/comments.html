@@ -3,19 +3,18 @@
             {% csrf_token %}
             <fieldset class="">
                 <legend class="">Добавить комментарий</legend>
-                <textarea required style="width: 100%;" name="body" id="cmtbody" cols="40" rows="5"></textarea>
+                <textarea required style="max-width: 1400px; max-height: 100px;" name="body" id="cmtbody" cols="40" rows="5" placeholder="Напишите сообщение"></textarea>
             </fieldset>
             <div class="">
-                <button id="acsubmit" type="submit">Добавить комментарий</button>
+                <button class="button button-more" id="acsubmit" type="submit">Отправить</button>
             </div>
         </form>
+        {% else %}
+        <p>Чтобы оставить комментарий, нужно зарегистрироваться.</p>
     {% endif %}
-    <br>
-    <h3>Комментариев ({{ comments.count }}) :</h3>
-    <hr>
-    <br>
+    
     {% if not comments %}
-        Пока нет комментариев
+        <p class="not_comment">Пока нет комментариев</p>
     {% else %}
         {% for comment in comments %}
         <div class="">

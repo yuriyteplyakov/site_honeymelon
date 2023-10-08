@@ -5,11 +5,13 @@ from django.urls.base import reverse_lazy
 #from django.urls.base import reverse_lazy
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
-from blog.models import Post, Review
+from blog.models import Post, Review, Comment
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 import random
+
+from blog.forms import CommentForm
 
 # first
 #COMPLETED: [x] Завершена
@@ -122,7 +124,7 @@ class HomePostListViewAllUsers(ListView):
 
 class UserPostListView(ListView):
     # Модель Post в models.py
-    paginate_by = 2
+    paginate_by = 4
     model = Post
     context_object_name = 'blog_post_user_list'
 
@@ -201,7 +203,22 @@ def post_detail_view(request, pk):
     total_saves = handle_page.total_saves_posts()
     # RELATED APP notification
     context = {}
-    
+
+    if request.method == "POST":
+        comment_qs = None
+        comment_form = CommentForm(request.POST or None)
+        if comment_form.is_valid():
+            form = request.POST.get("body")
+            comment = Comment.objects.create(name_author=request.user,
+                                             body = form,
+                                             post=handle_page,
+                                             reply_comment=comment_qs)
+            comment.save()
+            total_comments = handle_page.comments_blog.all().filter(reply_comment=None).order_by('-id')
+    else:
+        comment_form = CommentForm()
+    context['comment_form'] = comment_form
+    context["comments"] = total_comments
     context["post"] = handle_page
     return render(request, 'blog/post_detail.html', context)
 # часть 6

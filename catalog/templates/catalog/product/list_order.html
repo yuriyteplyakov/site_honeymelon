@@ -11,20 +11,22 @@
     </header>
 <section class="section">
     <div class="container-catalog">
-        <div class="sidebar">
-            <h3>Категории</h3>
-            <ul>
-                <li>
-                    <a href="{% url 'catalog:product_list_order' %}">Все категории</a>
-                </li>
-                {% for c in categories %}
+        <div class="nav_cat">
+            <button id="sidebar" class="toggle-btn">Категории <img src="{% static 'img\icons\arrow-right-form.svg' %}" class="arrow-icon"></i></button>
+            <div class="sidebar">
+                
+                <ul class="categories">
                     <li>
-                        <a href="{{ c.get_absolute_url_order }}">{{ c.name }}</a>
+                        <a href="{% url 'catalog:product_list_order' %}">Все категории</a>
                     </li>
-                {% endfor %}
-            <!--убрать сайдбар возможно (альтернатива)-->
-                    
-                </ul>
+                    {% for c in categories %}
+                        <li>
+                            <a href="{{ c.get_absolute_url_order }}">{{ c.name }}</a>
+                        </li>
+                    {% endfor %}
+                        
+                    </ul>
+            </div>
         </div>
         <div class="catalog">
             {% for product in products %}

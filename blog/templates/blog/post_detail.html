@@ -58,42 +58,12 @@
         </div>
             <img src="{{ post.image.url }}" alt="изображение поста" class="post-image">
             <div class="post-like">
-                <i class="fas fa-heart"></i>
-                <span class="like-count">0</span>
+                <span class="like-count"><i class="fas fa-heart"></i> 0</span>
+                <h3>Комментариев: ({{ comments.count }})</h3>
             </div>
     </div>
     
-    <div class="post-comments">
-        
-        <h3 class="comments-heading">Комментарии</h3>
-<!--доработать адаптивность под маленькие экраны-->
-<div class="about-us">
-<div class="about-us__desc">
-        <ul class="comments-list">
-            <li class="comment-item">
-                <div class="comment-details">
-                    <span class="comment-author">Автор комментария</span>
-                    <span class="comment-date">Дата комментария</span>
-                </div>
-                    <p class="comment-content">Текст комментария</p>
-                    <div class="post-like">
-                        <i class="fas fa-heart"></i>
-                        <span class="like-count">0</span>
-                    </div>
-            </li>
-        </ul>
-    </div>
-        <form action="" class="comment-form">
-            <textarea class="comment-input" placeholder="Напишите комментарий"></textarea>
-            <button type="submit" class="comment-button">Отправить</button>
-        </form>
-        </div>
-    </div>
-    
-    </div>
-    <div class="post-comments">
-    {% include "blog/comments.html" %}
-</div>
+    <!--<div class="comments-container">{% include "blog/comments.html" %}</div>-->
     
 </div>
 {% endblock %}

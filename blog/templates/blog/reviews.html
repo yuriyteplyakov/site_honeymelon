@@ -16,19 +16,16 @@
                 <h2 class="title-1">Отзывы из социальных сетей</h2>
             </div>
             <div class="gallery">
-                
-                <div class="section__cards--6-in-row">
-                    
+                {% for review in reviews %}
                     <article class="card">
-                        {% for review in reviews %}
+                        
                         <a href="{{ review.image.url }}" data-fancybox="gallery">
-                            <img class="card__img" src="{{ review.image.url }}" alt="{{ review.image.name }}" />
+                            <img src="{{ review.image.url }}" alt="{{ review.image.name }}"/>
                         </a>
-                        {% endfor %}
+                        
                     </article>
-                    
+                    {% endfor %}
                 </div>
-                
             </div>
         </div>
     </section>

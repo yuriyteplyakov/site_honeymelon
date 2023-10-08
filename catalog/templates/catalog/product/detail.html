@@ -7,7 +7,11 @@
 {% endblock %}
 
 {% block content_catalog_detail %}
-
+<header class="header-catalog">
+    {% block navigation %}
+    {% include 'catalog/navbar-catalog.html' %}
+    {% endblock %}
+    </header>
 <section class="section_detail">
     <div class="container">
         <div class="micro_navbar">
@@ -15,6 +19,7 @@
         </div>
         
         <div class="about-us">
+            {% if messages %}{{ message }}{% endif %}
             <img class="img_detail" src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'catalog/img/no_image.png' %}{% endif %}">
             <div class="about-us__desc">
                 <h3 class="about-us__title">{{ product.name }}</h3>
@@ -24,12 +29,13 @@
                 </div>
                 <footer class="card__footer">
                     
-                    <form id="cart-form" action="{% url 'cart:cart_add' product.id %}" method="post">
-                        <label for="quantity" class="quantity-label">Количество:</label>
-                        <input type="number" name="quantity" id="quantity" class="quantity-input" value="1" min="1">
+                    <form id="cart-form" action="{% url 'cart:cart_add' product.id %}" method="POST">
+                        <label for="quantity" class="quantity-label"></label>
+                        <!--<input type="number" name="quantity" id="quantity" class="quantity-input" value="1" min="1">-->
                         
+                        {{ cart_product_form }}
                         {% csrf_token %}
-                        <input type="submit" value="В корзину" class="submit-button" onclick="addToCart(event)">
+                        <button type="submit" class="button button-more" id="add-to-cart-btn">В корзину</button>
                     </form>
                     <div class="card__rating">
                         <img src="{% static 'img/heart.png' %}" alt="heart">

@@ -30,7 +30,7 @@
               <img class="card__img card__img--no-margin card__img--h100" src="{{ post.image.url }}" alt="Img">
                 <div class="card__desc">
                   <h3 class="card__title card__title--big">{{post.title}}</h3>
-                    <p class="card__text">{{post.content|safe|linebreaks|truncatewords_html:7}} [Читать далее]... </p>
+                    <p class="card__text">{{post.content|safe|linebreaks|truncatewords_html:7}} [Читать далее...]</p>
                     
                     <footer class="card__footer card__footer--wide">
                         <a href="#date" class="card__footer-link card__footer-link--date">{{post.date_created|date:"d.m.Y"}}</a>
@@ -58,21 +58,21 @@
 {% if is_paginated %}
 
         {% if page_obj.has_previous %}
-          <a class="button button-paginate" href="?page=1">Первая</a>
-          <a class="button button-paginate" href="?page={{page_obj.previous_page_number}}">Предыдущая</a>
+          <a class="button button-more" href="?page=1">Первая</a>
+          <a class="button button-more" href="?page={{page_obj.previous_page_number}}">Предыдущая</a>
         {% endif %}
   
         {% for num in page_obj.paginator.page_range %}
           {% if page_obj.number == num %}
-            <a class="button button-paginate" href="?page={{num}}">{{num}}</a>
+            <a class="button button-more" href="?page={{num}}">{{num}}</a>
           {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-          <a class="button button-paginate" href="?page={{num}}">{{num}}</a>
+          <a class="button button-more" href="?page={{num}}">{{num}}</a>
           {% endif %}
         {% endfor %}
   
         {% if page_obj.has_next %}
-          <a class="button button-paginate" href="?page={{page_obj.next_page_number}}">Следующая</a>
-          <a class="button button-paginate" href="?page={{page_obj.paginator.num_pages}}">Последняя</a>
+          <a class="button button-more" href="?page={{page_obj.next_page_number}}">Следующая</a>
+          <a class="button button-more" href="?page={{page_obj.paginator.num_pages}}">Последняя</a>
         {% endif %}
   
       {% endif %}
