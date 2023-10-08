@@ -91,7 +91,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    'debug_toolbar.middleware.DebugToolbarMiddleware', # django-debug-toolbar
+    "debug_toolbar.middleware.DebugToolbarMiddleware", # django-debug-toolbar
+    "middleware.middlewares.AjaxMiddleware",
 ]
 
 ROOT_URLCONF = "site_honey.urls"

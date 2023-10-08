@@ -1,0 +1,32 @@
+{% extends "catalog/base.html" %}
+{% load static %}
+{% block title %}Избранное{% endblock %}
+
+{% block content_catalog %}
+<header class="header-catalog">
+    {% block navigation %}
+    {% include 'catalog/navbar-catalog.html' %}
+    {% endblock %}
+    </header>
+
+    <h3>Сохраненные товары ({{saved_products|length}})</h3>
+    {% if not saved_products %}
+    <p>Нет сохранённых товаров.</p>
+{% endif %}
+<div class="container-catalog">
+    <div class="catalog">
+{% for product in saved_products %}
+<div class="product">
+<article>
+    
+        <img src="{{ product.image.url }}" alt="image">
+    
+    
+    <h3><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h3>
+
+  </article>
+</div>
+{% endfor %}
+</div>
+</div>
+{% endblock %}

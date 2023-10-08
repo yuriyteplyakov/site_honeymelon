@@ -217,9 +217,15 @@ def post_detail_view(request, pk):
             total_comments = handle_page.comments_blog.all().filter(reply_comment=None).order_by('-id')
     else:
         comment_form = CommentForm()
+    
     context['comment_form'] = comment_form
     context["comments"] = total_comments
     context["post"] = handle_page
+
+    if request.is_ajax():
+        html = render_to_string('blog/comments.html', context)
+        return JsonResponse({"form": html})
+    
     return render(request, 'blog/post_detail.html', context)
 # часть 6
 # 6. Сделаем заголовки статей ссылками.

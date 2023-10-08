@@ -1,0 +1,14 @@
+{% load static %}
+{% if user.is_authenticated %}
+<form action="{% url 'catalog:product-save' %}" method="POST">
+    {% csrf_token %}
+  
+    
+      {% if saved %}
+      <button id="save" type="submit" name="post_sid" value="{{product.id}}" class="btn btnsave" onclick="addToFavorites(); return false;"><img id="heart" src="{% static 'img/heart_red.png' %}" alt="сохранено"></button>
+      {% else %}
+        <button id="save" type="submit" name="post_sid" value="{{product.id}}" class="btn btnsave" onclick="addToFavorites(); return false;"><img id="heart" src="{% static 'img/heart.png' %}" alt="сохранить"></button>
+      {% endif %}
+    
+  </form>
+  {% endif %}

@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
 from ckeditor.fields import RichTextField
+from django.contrib.auth.models import User
 # Create your models here.
 
 class Category(models.Model):
@@ -38,6 +39,9 @@ class Product(models.Model):
     available = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    saved_products = models.ManyToManyField(
+        User, related_name="catalog_products_save", blank=True, verbose_name='Сохранённые товары пользователя'
+    )
  
     class Meta:
         ordering = ('name',)
@@ -49,6 +53,9 @@ class Product(models.Model):
         if not self.slug:
             self.slug = slugify(self.name)
         super(Product, self).save(*args, **kwargs)
+
+    def total_saved_products(self):
+        return self.saved_products.count()
  
     def __str__(self):
         return self.name

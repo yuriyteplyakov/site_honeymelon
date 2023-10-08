@@ -54,8 +54,9 @@
             <footer class="card__footer">
                 <p>{{ product.price }} р.</p>
                 <p>В наличии: {{ product.stock }}</p>
-                <div class="card__rating">
-                    <img src="{% static 'img/heart.png' %}" alt="heart">
+                <div id="save-section" class="card__rating">
+                    {% include 'catalog/save_section.html' %}
+                    <!--<img src="{% static 'img/heart.png' %}" alt="heart">-->
                 </div>
             </footer>
             <div class="detail_catalog_date">
